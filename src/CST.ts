@@ -1,4 +1,9 @@
-export const CST = {
+
+type CSTType = {
+    [s: string]: any;
+}
+
+export const CST: CSTType = {
     SCENES: {
         LOAD: 'LOAD',
         MENU: 'MENU',

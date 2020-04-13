@@ -1,10 +1,15 @@
 import { CST } from '../CST';
 import { NPC } from '../Classes/NPC';
 
-const Utils = require('../Utils');
-var r = require('random');
+import r from 'random';
 
 export class GameScene extends Phaser.Scene {
+    actionKey: any;
+    player: any;
+    obs: any;
+    keyboard: object;
+    speed: number;
+    kingo: NPC;
     constructor() {
         super({
             key: CST.SCENES.GAME
@@ -93,7 +98,7 @@ export class GameScene extends Phaser.Scene {
 
     inSpeech = false;
 
-    create = () => {
+    create() {
         this.scene.launch(CST.SCENES.VGP, this);
 
         this.actionKey = this.input.keyboard.addKey('Q');
@@ -150,17 +155,17 @@ export class GameScene extends Phaser.Scene {
 
         this.speed = 120;
         var shiftKey = this.input.keyboard.addKey('SHIFT');
-        shiftKey.on('down', (event) => {
+        shiftKey.on('down', () => {
             this.speed = 240;
         });
-        shiftKey.on('up', (event) => {
+        shiftKey.on('up', () => {
             this.speed = 120;
         });
         var tabKey = this.input.keyboard.addKey('TAB');
-        tabKey.on('down', (event) => {
+        tabKey.on('down', () => {
             this.speed = 540;
         });
-        tabKey.on('up', (event) => {
+        tabKey.on('up', () => {
             this.speed = 120;
         });
 
@@ -215,7 +220,7 @@ export class GameScene extends Phaser.Scene {
         // this.speed = 120;
     }
 
-    update(time, delta) {
+    update() {
 
         // console.log(this.npc.depth, this.player.depth);
         this.player.depth = this.player.y + this.player.height;
